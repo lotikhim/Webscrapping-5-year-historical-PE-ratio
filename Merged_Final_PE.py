@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import time
 import random 
 import csv
+import yfinance as yf
 
 def random_delay():
     time.sleep(random.uniform(0, 8))
@@ -35,7 +36,8 @@ for row in rows:
 
 #print(constituents)
 df1 = pd.read_csv('Final_EPS_TTM.csv')
-#price=yf.download(constituents,period="max")["Adj Close"]
+price=yf.download(constituents,period="max")["Adj Close"]
+price.to_csv("pricedf.csv")
 df1.columns = df1.columns.str.replace(".", "-")
 pricedf = pd.read_csv("pricedf.csv")
 pricedf.columns = pricedf.columns.str.replace(".", "-")
@@ -53,8 +55,4 @@ for x, y in zip(price_cols, eps_cols):
     df_merged[ratio_column_name] = df_merged[x] / df_merged[y]
     print(df_merged[ratio_column_name])
 df_merged.to_csv("PE_Final.csv")
-
-# new_cols = [f'PE_Ratio_{ticker}' for ticker in constituents]
-# new_data = (df_merged[price_cols])/(df_merged[eps_cols])
-# df_merged = pd.concat([df_merged, pd.DataFrame(new_data, columns=new_cols)], axis=1)
 

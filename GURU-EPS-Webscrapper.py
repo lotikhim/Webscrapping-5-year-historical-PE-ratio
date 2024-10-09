@@ -6,6 +6,7 @@ import time
 import random 
 import csv
 import re
+from fake_useragent import UserAgent
 cookies = {
     'DSID': 'AB_BQxkcXjqXL-T45ixgU0iOLau8YrQ-mTVaB-w0SAjkWxSLijLvd9cwVlrCN84BjJ9WorKAZFfr7x7mV60_IJyOJ32LIMV57XKGp4-tHxTAgswBeJNKSIub1RPEjU-RTolVJ_Vc_q2lIW87ntt7vHz5ZtUZe0hLelVo5bXqxYDFFj48FnC-sTIoTe3baqI49hoOb6B1X3VkQFh721VVQ34I1d2_hNQvnzcFpvh9NMVbJSJOp558LaO3bDl0QORh63cXOVvjONYLk5nCrfKhr9qR7FSutBG-RLKmGoHSCe2vaqSCmNKpWIQ',
     'PHPSESSID': 'rpsnmuilf5t9ssslh5her364h0',
@@ -52,7 +53,7 @@ table = soup.find("table", class_="wikitable sortable")
 
 # Find all the rows in the table (excluding the header row)
 rows = table.find_all("tr")[1:504]
-# Constituents of DJI
+# Constituents of S&P500
 constituents=[]
 industry_list=[]
 
